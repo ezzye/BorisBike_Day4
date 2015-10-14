@@ -8,10 +8,6 @@ class DockingStation
     @bikes = []
   end
 
-  def default_capacity
-    DEFAULT_CAPACITY
-  end
-
   def release_bike
 
     raise 'There is no bike present' if empty?
