@@ -11,12 +11,12 @@ describe DockingStation do
 
     it {is_expected.to respond_to(:dock).with(1).argument}
 
-    it { is_expected.to respond_to(:bike)}
+    it {is_expected.to respond_to(:bike)}
 
-    it 'returns docked bikes' do
+    it "shows docked bike"  do
       bike = Bike.new
       subject.dock(bike)
-      expect(subject.bike).to eq bike
+      expect(subject.bike).to eq(bike)
     end
 
 end
