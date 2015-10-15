@@ -2,6 +2,7 @@ require "docking_station"
 require "bike"
 
 describe DockingStation do
+
     it {is_expected.to respond_to :release_bike}
 
     it "releases a bike that is working" do
@@ -13,13 +14,15 @@ describe DockingStation do
 
     it {is_expected.to respond_to(:dock).with(1).argument}
 
-    it {is_expected.to respond_to(:bikes)}
+=begin
+    it {is_expected.to respond_to(subject.bikes)}
 
     it "shows docked bike"  do
       bike = Bike.new
       subject.dock(bike)
       expect(subject.bikes[0]).to eq(bike)
     end
+=end
 
     it "has a default capacity" do
       expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
@@ -39,10 +42,13 @@ describe DockingStation do
     end
 
     describe 'initialization' do
-      it 'has a variable capacity' do
-        docking_station = DockingStation.new(50)
-        50.times{docking_station.dock Bike.new}
-        expect{docking_station.dock Bike.new}.to raise_error("The docking station is full")
+      subject { DockingStation.new }
+      let(:bike) {Bike.new}
+      it 'defaults capacity' do
+        described_class::DEFAULT_CAPACITY.times do
+          subject.dock(bike)
+        end
+        expect{subject.dock(bike)}.to raise_error("The docking station is full")
       end
     end
 
@@ -51,13 +57,13 @@ describe DockingStation do
     describe '#set_capacity' do
       context 'capacity is provided' do
         it "set capacity to number provided" do
-          expect(subject.set_capacity=(50)).to eq(subject.set_capacity)
+          expect(subject.capacity=(50)).to eq(subject.capacity)
         end
       end
 
       context 'capacity is not provided' do
         it "set capacity to default capacity" do
-          expect(subject.set_capacity).to eq(20)
+          expect(subject.capacity).to eq(20)
         end
       end
     end
