@@ -1,17 +1,16 @@
 #Added test comment
 class Bike
+
+  def initialize
+    @working = true
+  end
+
   def working?
-    true
+    @working
   end
 
-  def set_broken
-    @broken = true
+  def break
+    @working = false
   end
-
-  attr_reader :broken
-
-
-
-
 
 end
