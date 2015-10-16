@@ -52,6 +52,18 @@ describe DockingStation do
 
     end
 
+    describe '#release_broken' do
+      let(:bike) {double(:bike, :working? => false, :break => false )}
+      let(:bike1) {double(:bike1, :working? => false, :break => false )}
+      it 'releases all broken bikes' do
+        subject.dock(bike)
+        subject.dock(bike1)
+        expect(subject.release_broken).to eq [bike,bike1]
+      end
+    end
+
+
+
     describe '#dock' do
       context 'when docking station full' do
         let(:bike) {double("bike", :working? => true)}

@@ -16,13 +16,19 @@ class DockingStation
     @bikes.pop
   end
 
+  def release_broken
+    @broken_bikes
+  end
 
 
   def dock(bike)
     raise 'The docking station is full' if full?
-    @bikes << bike if bike.working?
-    @broken_bikes << bike if !(bike.working?)
+    bike.working? ? @bikes << bike : @broken_bikes << bike
+    # return @bikes << bike if bike.working?
+    # @broken_bikes << bike if !(bike.working?)
   end
+
+
   def capacity=(capacity)
     @capacity = capacity
   end
