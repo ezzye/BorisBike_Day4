@@ -2,9 +2,9 @@ require "docking_station"
 require "bike"
 
 describe DockingStation do
-  let(:bike) {Bike.new}
-  let(:bike1) {Bike.new}
-  let(:bike2) {Bike.new}
+  let(:bike) {double(:bike)}
+  let(:bike1) {double(:bike1)}
+  let(:bike2) {double(:bike2)}
     it {is_expected.to respond_to :release_bike}
 
     it "releases a bike that is working" do
