@@ -1,7 +1,5 @@
+require './lib/docking_station'
 class Garage
-
-  def get broken_bikes
-    @broken_bikes = broken_bikes
-  end
+  include BikeContainer
 
 end

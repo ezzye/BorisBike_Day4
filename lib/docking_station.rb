@@ -1,6 +1,9 @@
-require_relative "bike"
+require './lib/bike'
+require './lib/bike_container'
 
 class DockingStation
+  include BikeContainer
+
   DEFAULT_CAPACITY = 20
 
   attr_reader :capacity
@@ -14,10 +17,6 @@ class DockingStation
   def release_bike
     raise 'There is no bike present' if empty?
     @bikes.pop
-  end
-
-  def release_broken
-    @broken_bikes
   end
 
 
